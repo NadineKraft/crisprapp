@@ -1,0 +1,91 @@
+{% extends 'layout.html' %}
+
+
+{% block body %}
+
+<h1>Targets</h1>
+
+
+<script language="javascript" src="//www.biodalliance.org/release-0.13/dalliance-compiled.js"></script>
+<script language="javascript">
+
+  new Browser({
+      chr:          '2',
+      viewStart:    208245000,
+      viewEnd:      208252000,
+
+
+    coordSystem: {
+      speciesName: 'Human',
+      taxon: 9606,
+      auth: 'GRCh',
+      version: '38',
+      ucscName: 'hg38'
+    },
+
+    sources:     [{name:                 'Genome',
+                   twoBitURI:            '//www.biodalliance.org/datasets/hg19.2bit',
+                   tier_type:            'sequence'},
+                  {name:                 'Genes',
+                   desc:                 'Gene structures from GENCODE 19',
+                   bwgURI:               '//www.biodalliance.org/datasets/gencode.bb',
+                   stylesheet_uri:       '//www.biodalliance.org/stylesheets/gencode.xml',
+                   collapseSuperGroups:  true,
+                   trixURI:              '//www.biodalliance.org/datasets/geneIndex.ix'},
+                  {name:                 'My track',
+                   bwgURI:               "//hgdownload.soe.ucsc.edu/gbdb/criGri1/crispr/crispr.bb",
+                   mapping:              'hg18ToHg19'},]
+
+  });
+</script>
+
+
+<div id="svgHolder"></div>
+
+     <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Target ID</th>
+            <th scope="col">Chromosome</th>
+            <th scope="col">Start</th>
+            <th scope="col">Stop</th>
+            <th scope="col">MIT Specificity Score</th>
+            <th scope="col">GC Content</th>
+            <th scope="col">Doench Score</th>
+            <th scope="col">Strand</th>
+            <th scope="col">Sequence</th>
+            <th scope="col">Roi Name</th>
+            <th scope="col">Select Targets</th>
+        </tr>
+        </thead>
+
+        {% for target in data_json['targets'] %}
+
+        <tbody>
+        <tr>
+            <th scope="row">{{target.target_id}}</th>
+            <td>{{target.chromosome}}</td>
+            <td>{{target.start | numberFormat}}</td>
+            <td>{{target.stop | numberFormat}}</td>
+            <td>{{target.mit_score}}</td>
+            <td>{{target.gc_score}}</td>
+            <td>{{target.doench_score}}</td>
+            <td>{{target.strand}}</td>
+            <td>{{target.sequence}}</td>
+            <td>{{target.name}}</td>
+            <form method='POST' action="{{ url_for('handle_target_selection') }}">
+                <td><input type="checkbox" name="target_index" value="{{target.target_id}}"></td>
+            </form>
+        </tr>
+        </tbody>
+    {% endfor %}
+         <button type="submit">
+             <span class="glyphicon glyphicon-floppy-save"></span> Export selected Targets as excel file
+         </button>
+
+         </form>
+
+</table>
+
+
+{% endblock %}

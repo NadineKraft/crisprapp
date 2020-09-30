@@ -1,0 +1,49 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+<h1>Targets</h1>
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">Target ID</th>
+        <th scope="col">Chromosome</th>
+        <th scope="col">Start</th>
+        <th scope="col">Stop</th>
+        <th scope="col">GC Score</th>
+        <th scope="col">Doench Score</th>
+        <th scope="col">MIT Score</th>
+        <th scope="col">Strand</th>
+        <th scope="col">Sequence</th>
+        <th scope="col">Off-target amount</th>
+        <th scope="col">Average coverage</th>
+        <th scope="col">Provides enrichment</th>
+        <th scope="col">Number of reads</th>
+        <th scope="col">Update experiment outcome</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    {% for experiment in experiments %}
+    <tr>
+        <th scope="row">{{experiment.target_id}}</th>
+        <td>{{experiment.chromosome}}</td>
+        <td>{{experiment.start | numberFormat}}</td>
+        <td>{{experiment.stop | numberFormat}}</td>
+        <td>{{experiment.gc_score}}</td>
+        <td>{{experiment.d_score}}</td>
+        <td>{{experiment.m_score}}</td>
+        <td>{{experiment.strand}}</td>
+        <td>{{experiment.sequence}}</td>
+        <td>{{experiment.off_targets}}</td>
+        <td>{{experiment.coverage}}</td>
+        <td>{{experiment.enrichment}}</td>
+        <td>{{experiment.read_amount}}</td>
+        <td><a href="/update_targets/{{experiment.exp_target_id}}" class="btn btn-default pull-right">Edit</a></td>
+    </tr>
+    </tbody>
+    {% endfor %}
+
+</table>
+
+{% endblock %}

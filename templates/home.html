@@ -1,0 +1,19 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<div class="jumbotron text-center">
+    <h1>Welcome to CrisprApp</h1>
+    <p class="lead">Find and select targets for your CRISPR experiment</p>
+    <div class="list-group">
+        <a href="#" class="list-group-item list-group-item-action active">
+            Here are some shortcuts to create your first experiment:
+        </a>
+        <a href="/register" class="list-group-item list-group-item-action">You need to register first</a>
+        <a href="/upload" class="list-group-item list-group-item-action">Then you can simply upload a file containing all your ROIs here</a>
+        <a href="/add_roi" class="list-group-item list-group-item-action">Or create them manually here</a>
+        <a href="/rois" class="list-group-item list-group-item-action">After that you can select your ROIs for an experiment run to find all your targets here</a>
+
+    </div>
+</div>
+
+{% endblock %}

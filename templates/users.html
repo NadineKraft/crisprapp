@@ -1,0 +1,39 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+  <h1>Manage your personal information </h1>
+<h2><small> Welcome {{session.username}}</small></h2>
+
+  <hr>
+  <table class="table table-striped">
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Username</th>
+      <th>Institute</th>
+      <th>Country</th>
+      <th></th>
+      <th></th>
+    </tr>
+    {% for info in user %}
+      <tr>
+        <td>{{info.name}}</td>
+        <td>{{info.email}}</td>
+        <td>{{info.username}}</td>
+        <td>{{info.institute}}</td>
+        <td>{{info.country}}</td>
+        <td><a href="edit_user/{{user.user_id}}" class="btn btn-default pull-right">Edit</a></td>
+
+        <td>
+          <form action="{{url_for('delete_user')}}" method="post">
+            <input type="hidden" name="_method" value="DELETE">
+            <input type="submit" value="Delete" class="btn btn-danger">
+          </form>
+        </td>
+        <td>
+
+      </tr>
+    {% endfor %}
+  </table>
+
+{% endblock %}

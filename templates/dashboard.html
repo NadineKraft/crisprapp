@@ -1,0 +1,40 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+  <h1>Manage your ROIs </h1>
+<h2><small> Welcome {{session.username}}</small></h2>
+  <a class="btn btn-success" href="/add_roi"> Add Roi</a>
+  <hr>
+  <table class="table table-striped">
+    <tr>
+      <th>ID</th>
+      <th>Chromosome</th>
+      <th>Start</th>
+      <th>Stop</th>
+      <th>Name</th>
+      <th>Strand</th>
+      <th>Full region</th>
+      <th></th>
+      <th></th>
+    </tr>
+    {% for roi in rois %}
+      <tr>
+        <td>{{roi.roi_id}}</td>
+        <td>{{roi.chromosome}}</td>
+        <td>{{roi.start | numberFormat}}</td>
+        <td>{{roi.stop | numberFormat}}</td>
+        <td>{{roi.name}}</td>
+        <td>{{roi.strand}}</td>
+        <td>{{roi.full_region}}</td>
+        <td><a href="edit_rois/{{roi.roi_id}}" class="btn btn-default pull-right">Edit</a></td>
+        <td>
+          <form action="{{url_for('delete_roi', id=roi.roi_id)}}" method="post">
+            <input type="hidden" name="_method" value="DELETE">
+            <input type="submit" value="Delete" class="btn btn-danger">
+          </form>
+        </td>
+      </tr>
+    {% endfor %}
+  </table>
+
+{% endblock %}

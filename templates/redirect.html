@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>CRISPR</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <script>
+      function navigate() {
+        window.location.href = 'targets';  // redirect when done
+      }
+       fetch('slow').then(navigate); // load the slow url then navigate
+      // fetch('crispr(data_json, framesize, minimum_score)').then(navigate);
+    </script>
+</head>
+
+
+
+
+{% block body %}
+{% include 'includes/_navbar.html' %}
+
+<h1>Searching for Targets, this might take a while</h1>
+
+<img class="col-sm-3 col-sm-offset-4" src="{{ url_for('static', filename='spinner.gif') }}" ng-show="loading">
+
+
+{% endblock %}

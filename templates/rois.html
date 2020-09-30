@@ -1,0 +1,59 @@
+{% extends 'layout.html' %}
+
+
+{% block body %}
+
+<h1>ROIs</h1>
+
+{% from "includes/_formhelpers.html" import render_field %}
+
+<form method='POST' action="{{ url_for('rois') }}">
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">ROI ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Chromsosome</th>
+            <th scope="col">Start</th>
+            <th scope="col">Stop</th>
+            <th scope="col">Strand</th>
+            <th scope="col">Full Region</th>
+            <th scope="col">Select Rois</th>
+        </tr>
+        </thead>
+        <tbody>
+
+
+        {% for roi in rois %}
+
+        <tr>
+            <td>{{roi.roi_id}}</td>
+            <td>{{roi.name}}</td>
+            <td>{{roi.chromosome}}</td>
+            <td>{{roi.start | numberFormat}}</td>
+            <td>{{roi.stop | numberFormat}}</td>
+            <td>{{roi.strand}}</td>
+            <td>{{roi.full_region}}</td>
+            <form method='POST' action="targets">
+                <td><input type="checkbox" name="roi_index" value="{{roi.roi_id}}"></td>
+        </tr>
+
+        {% endfor %}
+
+        </tbody>
+
+        <input type="submit" value="Find targets" \>
+
+
+        <div class="form-group">
+            {{ render_field(form.framesize, class_="form-control") }}
+            {{ render_field(form.minimum_score, class_="form-control") }}
+            {{ render_field(form.experiment_name, class_="form-control") }}
+        </div>
+    </table>
+
+</form>
+
+{% endblock %}
+
+

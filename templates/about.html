@@ -1,0 +1,61 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<h1>About CrisprApp</h1>
+<p>This website helps you to find and select your CRISPR targets for one or multiple Regions of Interest (ROI)</p>
+
+<p>CrisprApp uses the following scoring methods:</p>
+<div class="accordion" id="accordionExample">
+  <div class="card">
+    <div class="card-header" id="headingOne">
+      <h2 class="mb-0">
+        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          Doench Score:
+        </button>
+      </h2>
+    </div>
+    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+      <div class="card-body">
+          The Doench Score calculates the on-target activity using the method proposed by Doench et al, 2014. This scoring algorithm analyses the one- and two-base features of the gRNA, as well as the GC content, and uses an experimentally determined predictive model to score the expected activity level of the CRISPR target. Scores are between 0 and 1, with a higher score denoting higher expected activity. Note that ambiguous bases won’t contribute to this score.
+          <a href="https://pubmed.ncbi.nlm.nih.gov/25184501/">Doench 2014</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header" id="headingTwo">
+      <h2 class="mb-0">
+        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+          MIT Specificity Score
+        </button>
+      </h2>
+    </div>
+    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+      <div class="card-body">
+          The MIT Specificity score summarizes all off-targets into a single number from 0-100. The higher the number, the fewer off-target effects are expected. We recommend targets with an MIT specificity > 50
+          <figure>
+            <img src="../static/MitScoreCalculation.png" alt="MIT Score Calculation">
+            <figcaption> <a href=https://bioinfogp.cnb.csic.es/tools/breakingcas/tutorial/help.html">MIT Score</a> </figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header" id="headingThree">
+      <h2 class="mb-0">
+        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+          GC-Content Score
+        </button>
+      </h2>
+    </div>
+    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+      <div class="card-body">
+        The GC content is usually calculated as a percentage value and sometimes called G+C ratio or GC-ratio. GC-content percentage is calculated as
+          Count(G + C)/Count(A + T + G + C) * 100%. We recommend a GC content score between 40 to 80%
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}

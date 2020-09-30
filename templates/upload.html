@@ -1,0 +1,33 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<h1>Upload your ROIs</h1>
+
+<p>You can upload a BED file containing one or multiple rois. The file must contain the following elements separated by
+    tab:</p>
+<figure>
+    <img src="../static/bed.png" alt="BED File Example">
+    <figcaption>BED file example</figcaption>
+</figure>
+
+
+<form action="http://localhost:5000/upload" method="POST"
+      enctype="multipart/form-data">
+    <input type="file" name="file"/>
+    <input type="submit" value="Upload BED file"/>
+</form>
+
+<ul class="list-group list-group-flush">
+  <li class="list-group-item">Description:</li>
+  <li class="list-group-item">1. Column: Chromosome name written as 'chr#'</li>
+  <li class="list-group-item">2. Column: Start position index</li>
+  <li class="list-group-item">3. Column: End position index</li>
+  <li class="list-group-item">4. Column: ROI-name</li>
+  <li class="list-group-item">5. Column: 0 (Placeholder for scores)</li>
+  <li class="list-group-item">6. Column: Strand</li>
+    <li class="list-group-item">7. Column: <b>0</b> for searching only within the framesize, <b>1</b>  for searching the whole region</li>
+</ul>
+<p>Please note, that the file must not end with an empty line or whitespace</p>
+
+
+{% endblock %}

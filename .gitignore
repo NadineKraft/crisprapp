@@ -1,0 +1,9 @@
+.idea
+
+venv
+
+*.bb
+*.bed
+*.fna
+uploads
+GiveMeTargets.json

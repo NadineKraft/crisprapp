@@ -1,0 +1,27 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+  <h1>Edit Rois</h1>
+  {% from "includes/_formhelpers.html" import render_field %}
+    <form method="POST" action="">
+    <div class="form-group">
+      {{ render_field(form.chromosome, class_="form-control") }}
+    </div>
+        <div class="form-group">
+      {{ render_field(form.start, class_="form-control")}}
+    </div>
+        <div class="form-group">
+      {{ render_field(form.stop, class_="form-control")}}
+    </div>
+        <div class="form-group">
+      {{ render_field(form.name, class_="form-control") }}
+    </div>
+      <div class="form-group">
+      {{ render_field(form.strand, class_="form-control") }}
+    </div>
+      <div class="form-group">
+      {{ render_field(form.full_region, class_="form-control") }}
+    </div>
+    <p><input class="btn btn-primary" type="submit" value="Submit">
+  </form>
+{% endblock %}
