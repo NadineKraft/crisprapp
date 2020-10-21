@@ -16,7 +16,6 @@ from target_sink.JsonStringTargetSink import JsonStringTargetSink
 from target_sink.BedFileTargetSink import BedFileTargetSink
 from target_index.FastaFileTargetIndex import FastaFileTargetIndex
 from scorer.GcContentScorer import GcContentScorer
-# from scorer.MitSpecificityScorer import MitSpecificityScorer
 from scorer.NewMitScorer import NewMitScorer
 from scorer.DoenchScorer import DoenchScorer
 from roi_source.JsonFileRoiSource import JsonFileRoiSource
